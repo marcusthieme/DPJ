@@ -1,4 +1,20 @@
-﻿SUB vColors
+﻿Test:
+LOAD * inline [
+FältA, FältB
+A, B
+
+]
+;
+
+Test2:
+LOAD * inline [
+FältC, FältD
+A, B
+
+]
+;
+
+SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
