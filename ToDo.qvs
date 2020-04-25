@@ -20,7 +20,6 @@ SUB vColors
 
 
 	//HUVUDGRUPP
-
 	SET v_RGB_VB2 		= 'rgb(40, 138, 207)'		;		//VB
 	SET v_RGB_Qlik2		= 'rgb(1, 152, 69)'			;		//Qlik
 	SET v_RGB_Medius2 	= 'rgb(227, 0, 15)'			;		//Medius
@@ -30,10 +29,24 @@ SUB vColors
 	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
 
 
+	//PRIO
+	SET v_RGB_VB 		= 'rgb(115, 197, 231)'		;		//VB
+	SET v_RGB_Qlik 		= 'rgb(49, 183, 105)'		;		//Qlik
+	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
+
+
 SUB ToDo
 	////////////////////////////////////////////////   ToDo   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	ToDo:
+	LOAD
+		if(Huvudgrupp 			= 'Klar', 			$(v_RGB_ST1),
+	    	if(Huvudgrupp 		= 'Påbörjad', 		$(v_RGB_ST2),
+	    		if(Huvudgrupp 	= 'Ej påbörjad', 	$(v_RGB_ST3)
+	     		)
+	   		)
+	   	) 						as C_StatusText
+
 	LOAD
 	    date("Created date")	as DateCr,
 	    "Created date"			as %Key_Date,
@@ -45,19 +58,22 @@ SUB ToDo
 	    Kommentar,
 	    H,
 	    J,
+
+	    if( not isnull(Kommentar), 1 , 0) as HarKommentar,
+
 	    if(Status 			= 'Klar', 			$(v_RGB_SB1),
 	    	if(Status 		= 'Påbörjad', 		$(v_RGB_SB2),
 	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_SB3)
 	     		)
 	   		)
-	   	) 						as C_StatusBackground ,
+	   	) 						as RGB_StatusBackground ,
 
 	   	if(Status 			= 'Klar', 			$(v_RGB_ST1),
 	    	if(Status 		= 'Påbörjad', 		$(v_RGB_ST2),
 	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_ST3)
 	     		)
 	   		)
-	   	) 						as C_StatusText,
+	   	) 						as RGB_StatusText,
 
 	   	if(Subfield(Grupp,' ', 1)						= 'VB',			'Visma Business',
 	   		if(Subfield(Grupp,' ', 1)					= 'Qlik',		'Qlik',
@@ -75,16 +91,17 @@ SUB ToDo
 	    			)			
 	     		)
 	   		)
-	   	 )		as C_Huvudgrupp
+	   	 )		as RGB_Huvudgrupp
 
-/*
+	   	/*
 	   	if(Status 			= 'Klar', 			$(v_RGB_ST1),
 	    	if(Status 		= 'Påbörjad', 		$(v_RGB_ST2),
 	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_ST3)
 	     		)
 	   		)
 	   	) 						as C_StatusText
-*/
+	   	*/
+
 //	   	Subfield(Grupp,' ' , 1 )		as Test_Subfield
 	FROM [lib://Root/QlikView/ToDo/ToDo.xlsx]
 	(ooxml, embedded labels, table is Sheet1)
