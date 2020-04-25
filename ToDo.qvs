@@ -40,12 +40,14 @@ SUB ToDo
 
 	ToDo:
 	LOAD
-		if(Huvudgrupp 			= 'Klar', 			$(v_RGB_ST1),
-	    	if(Huvudgrupp 		= 'Påbörjad', 		$(v_RGB_ST2),
-	    		if(Huvudgrupp 	= 'Ej påbörjad', 	$(v_RGB_ST3)
+		*,
+		if(Huvudgrupp 			= 'VB', 		'VB - Prio '&Prio,
+	    	if(Huvudgrupp 		= 'Qlik', 		'Qlik - Prio '&Prio,,
+	    		if(Huvudgrupp 	= 'Medius', 	'Medius - Prio '&Prio,
 	     		)
 	   		)
 	   	) 						as C_StatusText
+	;
 
 	LOAD
 	    date("Created date")	as DateCr,
