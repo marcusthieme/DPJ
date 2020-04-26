@@ -34,6 +34,7 @@ SUB ToDo
 	////////////////////////////////////////////////   ToDo   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	ToDo:
+/*	
 	LOAD
 		*,
 		if(Huvudgrupp 			= 'VB', 		'VB - Prio '&Prio,
@@ -43,7 +44,7 @@ SUB ToDo
 	   		)
 	   	) 						as C_StatusText
 	;
-
+*/
 	LOAD
 	    date("Created date")	as DateCr,
 	    "Created date"			as %Key_Date,
