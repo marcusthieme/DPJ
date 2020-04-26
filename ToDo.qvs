@@ -65,9 +65,9 @@ SUB ToDo
 	   	 )		
 	   	as RGB_Huvudgrupp,
 
-	   	if(Prio							= '1',				$(v_RGB_Prio1),
-	   		if(Prio						= '2',				$(v_RGB_Prio2),
-	    		if(Prio					= '3',				$(v_RGB_Prio3)
+	   	if(Prio							= '1',				'$(v_RGB_Prio1)',
+	   		if(Prio						= '2',				'$(v_RGB_Prio2)',
+	    		if(Prio					= '3',				'$(v_RGB_Prio3)'
 	    			)			
 	     		)
 	   		)
@@ -80,7 +80,7 @@ SUB ToDo
 		Huvudgrupp&' - '&Grupp 						as GruppKombinerad,
 		Huvudgrupp&' - '&Prio 						as GruppPrio,
 		1											as AktivitetCounter,
-		'Prio '&Prio 								as PrioText
+		if(not isnull(Prio),'Prio '&Prio ) 			as PrioText
 	;
 
 
