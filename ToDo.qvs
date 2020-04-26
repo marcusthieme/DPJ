@@ -1,32 +1,34 @@
-﻿SUB vColors
+﻿//Änringar
+
+SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	SET vTest = 'TestVärde';
 
 	//STATUS
 	//Status Background
-	SET v_RGB_SB1 = 'rgb(198, 239, 206)'	;		//Klar
-	SET v_RGB_SB2 = 'rgb(255, 235, 157)'	;		//Påbörjad
-	SET v_RGB_SB3 = 'rgb(255, 199, 207)'	;		//Ej påbörjad
+	SET v_RGB_SB1 			= 'rgb(198, 239, 206)'		;		//Klar
+	SET v_RGB_SB2 			= 'rgb(255, 235, 157)'		;		//Påbörjad
+	SET v_RGB_SB3 			= 'rgb(255, 199, 207)'		;		//Ej påbörjad
 
 	//Status Text
-	SET v_RGB_ST1 = 'rgb(12, 104, 11)'		;		//Klar
-	SET v_RGB_ST2 = 'rgb(162, 96, 11)'		;		//Påbörjad
-	SET v_RGB_ST3 = 'rgb(156, 1, 7)'		;		//Ej påbörjad
+	SET v_RGB_ST1 			= 'rgb(12, 104, 11)'		;		//Klar
+	SET v_RGB_ST2 			= 'rgb(162, 96, 11)'		;		//Påbörjad
+	SET v_RGB_ST3 			= 'rgb(156, 1, 7)'			;		//Ej påbörjad
 
 	//HUVUDGRUPP
-	SET v_RGB_VB2 		= 'rgb(40, 138, 207)'		;		//VB
-	SET v_RGB_Qlik2		= 'rgb(1, 152, 69)'			;		//Qlik
-	SET v_RGB_Medius2 	= 'rgb(227, 0, 15)'			;		//Medius
+	//SET v_RGB_VB2 		= 'rgb(40, 138, 207)'		;		//VB
+	//SET v_RGB_Qlik2		= 'rgb(1, 152, 69)'			;		//Qlik
+	//SET v_RGB_Medius2 	= 'rgb(227, 0, 15)'			;		//Medius
 
-	SET v_RGB_VB 		= 'rgb(115, 197, 231)'		;		//VB
-	SET v_RGB_Qlik 		= 'rgb(49, 183, 105)'		;		//Qlik
-	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
+	SET v_RGB_VB 			= 'rgb(115, 197, 231)'		;		//VB
+	SET v_RGB_Qlik 			= 'rgb(49, 183, 105)'		;		//Qlik
+	SET v_RGB_Medius 		= 'rgb(238, 76, 68)'		;		//Medius
 
 	//PRIO
-	SET v_RGB_VB 		= 'rgb(115, 197, 231)'		;		//VB
-	SET v_RGB_Qlik 		= 'rgb(49, 183, 105)'		;		//Qlik
-	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
+	SET v_RGB_Prio1 		= 'rgb(115, 197, 231)'		;		
+	SET v_RGB_Prio2 		= 'rgb(49, 183, 105)'		;		
+	SET v_RGB_Prio3			= 'rgb(238, 76, 68)'		;		
 
 	ENDSUB
 
@@ -61,7 +63,15 @@ SUB ToDo
 	     		)
 	   		)
 	   	 )		
-	   	as RGB_Huvudgrupp
+	   	as RGB_Huvudgrupp,
+
+	   	if(Prio							= '1',				$(v_RGB_Prio1),
+	   		if(Prio						= '2',				$(v_RGB_Prio2),
+	    		if(Prio					= '3',				$(v_RGB_Prio3)
+	    			)			
+	     		)
+	   		)
+	   	as RGB_Prio
 	;
 	
 	LOAD 	//Grupperingar & flaggor
@@ -69,7 +79,8 @@ SUB ToDo
 		if( not isnull(Kommentar), 'Ja' , 'Nej') 	as HarKommentar,
 		Huvudgrupp&' - '&Grupp 						as GruppKombinerad,
 		Huvudgrupp&' - '&Prio 						as GruppPrio,
-		1											as AktivitetCount
+		1											as AktivitetCounter,
+		'Prio '&Prio 								as PrioText
 	;
 
 
