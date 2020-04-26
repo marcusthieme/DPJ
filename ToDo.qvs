@@ -37,8 +37,8 @@ SUB ToDo
 	LOAD
 		*,
 		if(Huvudgrupp 			= 'VB', 		'VB - Prio '&Prio,
-	    	if(Huvudgrupp 		= 'Qlik', 		'Qlik - Prio '&Prio,,
-	    		if(Huvudgrupp 	= 'Medius', 	'Medius - Prio '&Prio,
+	    	if(Huvudgrupp 		= 'Qlik', 		'Qlik - Prio '&Prio,
+	    		if(Huvudgrupp 	= 'Medius', 	'Medius - Prio '&Prio
 	     		)		
 	   		)
 	   	) 						as C_StatusText
