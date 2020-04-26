@@ -1,6 +1,4 @@
-﻿//Ny kula2
-
-SUB vColors
+﻿SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
@@ -15,9 +13,6 @@ SUB vColors
 	SET v_RGB_ST2 = 'rgb(162, 96, 11)'		;		//Påbörjad
 	SET v_RGB_ST3 = 'rgb(156, 1, 7)'		;		//Ej påbörjad
 
-	ENDSUB
-
-
 	//HUVUDGRUPP
 	SET v_RGB_VB2 		= 'rgb(40, 138, 207)'		;		//VB
 	SET v_RGB_Qlik2		= 'rgb(1, 152, 69)'			;		//Qlik
@@ -27,11 +22,12 @@ SUB vColors
 	SET v_RGB_Qlik 		= 'rgb(49, 183, 105)'		;		//Qlik
 	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
 
-
 	//PRIO
 	SET v_RGB_VB 		= 'rgb(115, 197, 231)'		;		//VB
 	SET v_RGB_Qlik 		= 'rgb(49, 183, 105)'		;		//Qlik
 	SET v_RGB_Medius 	= 'rgb(238, 76, 68)'		;		//Medius
+
+	ENDSUB
 
 
 SUB ToDo
