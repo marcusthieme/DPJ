@@ -1,7 +1,7 @@
 ﻿SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
+	SET vTest = 'TestVärde';
 
 	//STATUS
 	//Status Background
