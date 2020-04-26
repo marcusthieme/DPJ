@@ -1,7 +1,6 @@
 ﻿SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-VqzcwnB9EK4C
-
+	
 	//STATUS
 	//Status Background
 	SET v_RGB_SB1 = 'rgb(198, 239, 206)'	;		//Klar
