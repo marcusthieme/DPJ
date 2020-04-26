@@ -1,4 +1,4 @@
-﻿SUB vColors
+SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
@@ -34,73 +34,57 @@ SUB ToDo
 	////////////////////////////////////////////////   ToDo   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	ToDo:
-/*	
-	LOAD
+
+	
+	LOAD 	//Färger
 		*,
-		if(Huvudgrupp 			= 'VB', 		'VB - Prio '&Prio,
-	    	if(Huvudgrupp 		= 'Qlik', 		'Qlik - Prio '&Prio,
-	    		if(Huvudgrupp 	= 'Medius', 	'Medius - Prio '&Prio
-	     		)		
+		if(Status 						= 'Klar', 			$(v_RGB_SB1),
+	    	if(Status 					= 'Påbörjad', 		$(v_RGB_SB2),
+	    		if(Status 				= 'Ej påbörjad', 	$(v_RGB_SB3)
+	     		)
 	   		)
-	   	) 						as C_StatusText
+	   	) 
+	   	as RGB_StatusBackground,
+
+	   	if(Status 						= 'Klar', 			$(v_RGB_ST1),
+	    	if(Status 					= 'Påbörjad', 		$(v_RGB_ST2),
+	    		if(Status 				= 'Ej påbörjad', 	$(v_RGB_ST3)
+	     		)
+	   		)
+	   	) 						
+	   	as RGB_StatusText,
+
+	   	if(Huvudgrupp					= 'VB',				$(v_RGB_VB),
+	   		if(Huvudgrupp				= 'Qlik',			$(v_RGB_Qlik),
+	    		if(Huvudgrupp			= 'Medius',			$(v_RGB_Medius),
+	    			if(Huvudgrupp		= 'Övrigt',			$(v_RGB_Övrigt)
+	    			)			
+	     		)
+	   		)
+	   	 )		
+	   	as RGB_Huvudgrupp
 	;
-*/
-	LOAD
+	
+	LOAD 	//Grupperingar & flaggor
+		*,
+		if( not isnull(Kommentar), 'Ja' , 'Nej') 	as HarKommentar,
+		Huvudgrupp&' - '&Grupp 						as GruppKombinerad,
+		Huvudgrupp&' - '&Prio 						as GruppPrio
+	;
+
+	LOAD 	//Grunddata
 	    date("Created date")	as DateCr,
 	    "Created date"			as %Key_Date,
 	    "Deadline date"			as DateDeadline,
 	    Prio,
+	    Huvudgrupp,
 	    Grupp,
 	    Aktivitet,
 	    Status,
 	    Kommentar,
-	    H,
-	    J,
-
-	    if( not isnull(Kommentar), 1 , 0) as HarKommentar,
-
-	    if(Status 			= 'Klar', 			$(v_RGB_SB1),
-	    	if(Status 		= 'Påbörjad', 		$(v_RGB_SB2),
-	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_SB3)
-	     		)
-	   		)
-	   	) 						as RGB_StatusBackground ,
-
-	   	if(Status 			= 'Klar', 			$(v_RGB_ST1),
-	    	if(Status 		= 'Påbörjad', 		$(v_RGB_ST2),
-	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_ST3)
-	     		)
-	   		)
-	   	) 						as RGB_StatusText,
-
-	   	if(Subfield(Grupp,' ', 1)						= 'VB',			'Visma Business',
-	   		if(Subfield(Grupp,' ', 1)					= 'Qlik',		'Qlik',
-	    		if(Subfield(Grupp,' ', 1)				= 'Medius',		'Medius',
-	    			if(Subfield(Grupp,' ', 1)			= 'Övrigt',		'Övrigt'
-	    			)			
-	     		)
-	   		)
-	   	 )		as Huvudgrupp,
-
-	   	if(Subfield(Grupp,' ', 1)						= 'VB',			$(v_RGB_VB),
-	   		if(Subfield(Grupp,' ', 1)					= 'Qlik',		$(v_RGB_Qlik),
-	    		if(Subfield(Grupp,' ', 1)				= 'Medius',		$(v_RGB_Medius),
-	    			if(Subfield(Grupp,' ', 1)			= 'Övrigt',		$(v_RGB_Övrigt)
-	    			)			
-	     		)
-	   		)
-	   	 )		as RGB_Huvudgrupp
-
-	   	/*
-	   	if(Status 			= 'Klar', 			$(v_RGB_ST1),
-	    	if(Status 		= 'Påbörjad', 		$(v_RGB_ST2),
-	    		if(Status 	= 'Ej påbörjad', 	$(v_RGB_ST3)
-	     		)
-	   		)
-	   	) 						as C_StatusText
-	   	*/
-
-//	   	Subfield(Grupp,' ' , 1 )		as Test_Subfield
+	    Kommentar2,
+	    Kommentar3,
+	    Kommentar4
 	FROM [lib://Root/QlikView/ToDo/ToDo.xlsx]
 	(ooxml, embedded labels, table is Sheet1)
 	where len(Aktivitet)>0
