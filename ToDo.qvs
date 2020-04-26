@@ -1,6 +1,6 @@
 ﻿SUB vColors
 	////////////////////////////////////////////////   Colors   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+VqzcwnB9EK4C
 
 	//STATUS
 	//Status Background
@@ -67,7 +67,8 @@ SUB ToDo
 		*,
 		if( not isnull(Kommentar), 'Ja' , 'Nej') 	as HarKommentar,
 		Huvudgrupp&' - '&Grupp 						as GruppKombinerad,
-		Huvudgrupp&' - '&Prio 						as GruppPrio
+		Huvudgrupp&' - '&Prio 						as GruppPrio,
+		1											as AktivitetCount
 	;
 
 
