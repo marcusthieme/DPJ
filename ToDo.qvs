@@ -34,8 +34,6 @@ SUB ToDo
 	////////////////////////////////////////////////   ToDo   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	ToDo:
-
-/*	
 	LOAD 	//Färger
 		*,
 		if(Status 						= 'Klar', 			$(v_RGB_SB1),
@@ -72,7 +70,7 @@ SUB ToDo
 		Huvudgrupp&' - '&Prio 						as GruppPrio
 	;
 
-*/
+
 	LOAD 	//Grunddata
 	    date("Created date")	as DateCr,
 	    "Created date"			as %Key_Date,
