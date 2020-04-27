@@ -98,7 +98,7 @@ SUB ToDo
 	    Kommentar2,
     	Actions
 	FROM [lib://Dropbox/DPJ/Excel/ToDo.xlsx]
-	(ooxml, embedded labels, table is Sheet1);
+	(ooxml, embedded labels, table is Sheet1)
 	where len(Aktivitet)>0
 	;
 
