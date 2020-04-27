@@ -95,10 +95,9 @@ SUB ToDo
 	    Status,
 	    Kommentar,
 	    Kommentar2,
-	    Kommentar3,
-	    Kommentar4
-	FROM [lib://Root/QlikView/ToDo/ToDo.xlsx]
-	(ooxml, embedded labels, table is Sheet1)
+    	Actions
+	FROM [lib://Dropbox/DPJ/Excel/ToDo.xlsx]
+	(ooxml, embedded labels, table is Sheet1);
 	where len(Aktivitet)>0
 	;
 
